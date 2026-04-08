@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redis
+
+spec:
+  serviceName: "redis-service"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      initContainers:
+      - name: fix-permiession
+        image: alpine:latest
+        command: ["sh", "-c", "chown -R 999:999 /data"]
+        volumeMounts:
+        - name: redis-data
+          mountPath: /data
+      containers:
+      - name: redis
+        image: redis:7-alpine
+        args: ["--requirepass", "$(password)", "--appendonly", "yes"]
+        ports:
+        - containerPort: 6379
+        volumeMounts:
+        - name: redis-data
+          mountPath: /data
+        envFrom:
+        - secretRef:
+            name: redis-secret
+
+  volumeClaimTemplates:
+  - metadata:
+      name: redis-data
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 1Gi
+      
+        

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: booking-master-celery-worker
+
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: booking-master
+      component: worker
+  template:
+    metadata:
+      labels:
+        app: booking-master
+        component: worker
+    spec:
+      containers:
+        - name: booking-master
+          image: nariman079i/fixmaster:latest
+          imagePullPolicy: Always
+          command: ['/bin/sh', '-c']
+          args:
+            - | 
+              celery -A config.celery worker --loglevel=INFO 
+          envFrom:
+            - secretRef:
+                name: booking-master-secrets

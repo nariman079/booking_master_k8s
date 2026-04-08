@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: booking-master-deployment
+
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: booking-master
+      component: web
+  template:
+    metadata:
+      labels:
+        app: booking-master
+        component: web
+    spec: 
+      containers:
+        - name: booking-master
+          image: nariman079i/fixmaster:latest
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 8000
+            protocol: TCP
+          command: ['/bin/sh', '-c']
+          args:
+            - | 
+              python manage.py migrate &&
+              python manage.py collectstatic --noinput &&
+              uvicorn config.asgi:application --host 0.0.0.0 --port 8000
+          envFrom:
+            - secretRef:
+                name: booking-master-secrets
+              
