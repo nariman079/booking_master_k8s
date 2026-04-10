@@ -47,11 +47,11 @@ spec:
               service:
                 name: minio-console-service
                 port:
-                  number: 9000
+                  number: 9001
           - path: /s3console
             pathType: Prefix
             backend:
               service:
                 name: minio-api-service
                 port:
-                  number: 9001
+                  number: 9000
