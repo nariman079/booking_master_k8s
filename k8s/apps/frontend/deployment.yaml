@@ -13,6 +13,7 @@ spec:
     metadata:
       matchLabels:
         app: booking-master
+        component: frontend
     spec:
       containers:
         - name: booking-master-frontend
