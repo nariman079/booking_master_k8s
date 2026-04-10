@@ -1,29 +1,16 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
 metadata:
-  name: minio-ingress
-  annotations: 
-    nginx.ingress.kubernetes.io/rewrite-target: /
-
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
-  ingressClassName: nginx
   rules:
-
-    - host: s3.72.56.248.210.nip.io 
+    - host: s3.72.56.248.210.nip.io
       http:
         paths:
-          - path: /
-            pathType: Prefix
+          # Это регулярное выражение захватывает все после /api-s3/
+          - path: /api-s3(/|$)(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
-                name: minio-console-service
-                port:
-                  number: 9001
-                  
-          - path: /api-s3
-            pathType: Prefix
-            backend:
-              service:
-                name: minio-api-service
+                name: minio-api-service # Или как называется ваш сервис MinIO
                 port:
                   number: 9000
