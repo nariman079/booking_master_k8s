@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: booking-master-frontend-deployment
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: booking-master
+      component: frontend
+  template:
+    metadata:
+      matchLabels:
+        app: booking-master
+    spec:
+      containers:
+        - name: booking-master-frontend
+          image: nariman079i/fixmaster-frontend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80  
+          envFrom:
+           - configMapRef:
+                name: booking-master-frontend-configmap
