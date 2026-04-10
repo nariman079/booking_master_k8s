@@ -23,4 +23,18 @@ spec:
               service:
                 name: booking-master-service  
                 port:
-                  number: 8000   
+                  number: 8000 
+          - path: /admin
+            pathType: Prefix
+            backend:
+              service:
+                name: booking-master-service 
+                port:
+                  number: 8000
+          - path: /static
+            pathType: Prefix
+            backend:
+              service:
+                name: booking-master-service # Тот же сервис, что и для API
+                port:
+                  number: 8000
