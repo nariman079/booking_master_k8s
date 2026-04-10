@@ -17,4 +17,10 @@ spec:
                 name: booking-master-frontend-service  
                 port:
                   number: 80
-          
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: booking-master-service  
+                port:
+                  number: 8000   
