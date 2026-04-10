@@ -11,10 +11,9 @@ spec:
       component: frontend
   template:
     metadata:
-      matchLabels:
-        labels:
-          app: booking-master
-          component: frontend
+      labels:
+        app: booking-master
+        component: frontend
     spec:
       containers:
         - name: booking-master-frontend
