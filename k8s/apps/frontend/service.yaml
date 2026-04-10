@@ -6,7 +6,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: booking-master-frontend
+    app: booking-master
   ports:
     - protocol: TCP
       port: 80
