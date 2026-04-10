@@ -6,3 +6,4 @@ resources:
   - pv.yaml
   - services.yaml
   - secrets.yaml
+  - ingress.yaml
