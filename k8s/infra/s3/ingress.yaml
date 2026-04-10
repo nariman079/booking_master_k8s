@@ -11,9 +11,16 @@ spec:
         paths:
           # Это регулярное выражение захватывает все после /api-s3/
           - path: /api-s3(/|$)(.*)
-            pathType: ImplementationSpecific
+            pathType: Prefix
             backend:
               service:
                 name: minio-api-service # Или как называется ваш сервис MinIO
                 port:
                   number: 9000
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: minio-console-service # Или как называется ваш сервис MinIO
+                port:
+                  number: 9001
