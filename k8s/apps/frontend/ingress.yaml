@@ -34,6 +34,15 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: booking-master-service # Тот же сервис, что и для API
+                name: booking-master-service 
                 port:
                   number: 8000
+
+
+          - path: /s3console
+            pathType: Prefix
+            backend:
+              service:
+                name: minio-console-service 
+                port:
+                  number: 9001
