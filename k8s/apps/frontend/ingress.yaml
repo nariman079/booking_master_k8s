@@ -31,14 +31,6 @@ spec:
                 port:
                   number: 8000
 
-          - path: /static
-            pathType: Prefix
-            backend:
-              service:
-                name: booking-master-service 
-                port:
-                  number: 8000
-
     - host: admin.72.56.248.210.nip.io
       http:
         paths: 
