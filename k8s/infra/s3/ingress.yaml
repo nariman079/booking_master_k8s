@@ -19,7 +19,7 @@ spec:
     - host: admins3.72.56.248.210.nip.io
       http:
         paths: 
-          - path:
+          - path: /
             pathType: Prefix
             backend:
               service:
