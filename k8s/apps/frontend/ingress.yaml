@@ -38,5 +38,25 @@ spec:
                 name: booking-master-service 
                 port:
                   number: 8000
+                  
+    - host: s3.72.56.248.210.nip.io
+      http:
+        paths: 
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: minio-console-service # Или как называется ваш сервис MinIO
+                port:
+                  number: 9001 
+
+          # Это регулярное выражение захватывает все после /api-s3/
+          - path: /api-s3
+            pathType: Prefix
+            backend:
+              service:
+                name: minio-api-service # Или как называется ваш сервис MinIO
+                port:
+                  number: 9000
 
    
