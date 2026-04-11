@@ -17,10 +17,14 @@ spec:
                 name: minio-api-service # Или как называется ваш сервис MinIO
                 port:
                   number: 9000
-          - path: /
+                  
+    - host: admins3.72.56.248.210.nip.io
+      http:
+        paths: 
+          - path:
             pathType: Prefix
             backend:
               service:
                 name: minio-console-service # Или как называется ваш сервис MinIO
                 port:
-                  number: 9001
+                  number: 9001 
