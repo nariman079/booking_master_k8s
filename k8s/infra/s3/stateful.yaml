@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: minio
-          image: bitnami/minio:latest
+          image: quay.io/minio/minio
           command:
             - /bin/sh
             - -c
