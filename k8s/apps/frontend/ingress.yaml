@@ -16,22 +16,19 @@ spec:
                 name: booking-master-frontend-service  
                 port:
                   number: 80
-          - path: /api
+                  
+    - host: api.72.56.248.210.nip.io
+      http:
+        paths:
+          - path: /
             pathType: Prefix
             backend:
               service:
                 name: booking-master-service  
                 port:
                   number: 8000 
-          - path: /admin
-            pathType: Prefix
-            backend:
-              service:
-                name: booking-master-service 
-                port:
-                  number: 8000
 
-    - host: admin.72.56.248.210.nip.io
+    - host: admins3.72.56.248.210.nip.io
       http:
         paths: 
           - path: /
