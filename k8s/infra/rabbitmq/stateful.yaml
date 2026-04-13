@@ -18,7 +18,7 @@ spec:
         image: alpine:latest
         command: ["sh", "-c", "chown -R 999:999 /data"]
         volumeMounts:
-        - name: redis-data
+        - name: rabbit-data
           mountPath: /data
       containers:
       - name: rabbitmq
